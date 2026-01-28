@@ -1,55 +1,123 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Full Stack Todo Web Application with AI Chatbot Constitution
+<!-- Phase 2 + Phase 3 Hackathon Project -->
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-Driven Development Only
+All development follows the Spec-Kit Plus workflow. No manual coding by human — Claude generates all code, structure, and logic. Every feature must be specified before implementation begins.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Clear Separation of Concerns
+The architecture maintains strict boundaries between:
+- **Frontend**: User interface and client-side logic
+- **Backend**: API services and business logic
+- **AI/Chatbot**: Natural language processing and tool orchestration
+- **Database**: Persistent data storage
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Each layer has a single responsibility and communicates through well-defined interfaces.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### III. Security-First Design
+Security is not an afterthought but a foundational requirement:
+- Authentication required for all task operations
+- Unauthorized requests return proper HTTP errors (401, 403)
+- Input validation on all endpoints
+- Task ownership enforced at every layer
+- No hardcoded secrets or credentials (use `.env`)
+- User data isolation strictly enforced
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### IV. Production-Grade Quality
+This is not a demo — it must feel professional and production-ready:
+- Clean, readable code structure
+- Predictable folder organization
+- Clear naming conventions
+- Reusable components
+- Maintainable and extensible design
+- Graceful error handling throughout
 
-### [PRINCIPLE_6_NAME]
+### V. Phase Extension (Not Replacement)
+Phase 3 (AI Chatbot) must extend Phase 2 (Todo App), not replace it:
+- Existing Phase 2 functionality must remain stable
+- No breaking changes to existing APIs
+- New features integrate seamlessly with existing architecture
+- Both UI-based and chat-based task management coexist
 
+### VI. Stateless Services with Persistent State
+- Backend services are stateless
+- Persistent state stored only in database
+- Database is the single source of truth
+- No session state stored in memory
 
-[PRINCIPLE__DESCRIPTION]
+## Architecture Principles
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Backend Requirements
+- REST APIs must be user-scoped
+- All operations must validate authenticated user
+- Errors must be handled gracefully with meaningful messages
+- No unnecessary dependencies
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Frontend Requirements
+- Homepage loads first (public landing page)
+- Authentication is user-triggered (no forced redirects)
+- Modern, clean, and professional UI
+- Accessibility and responsiveness required
+- No experimental or flashy UI patterns
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### AI & Chatbot Requirements
+- AI must act only through defined tools/APIs
+- No hallucinated task data — all data comes from database
+- All AI actions must be confirmed in responses
+- Chatbot must explain what it did in simple language
+- AI must never access data outside the authenticated user
+- Chatbot must feel like a native feature, not bolted-on
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Quality Standards
+
+### Code Quality
+- Clean and readable structure
+- Predictable folder organization
+- Clear naming conventions
+- Reusable components
+- Maintainable and extensible design
+
+### Testing Standards
+- Features must be testable
+- Clear acceptance criteria for each feature
+- Error paths explicitly tested
+
+### Documentation
+- Code should be self-documenting where possible
+- Complex logic documented inline
+- API contracts clearly defined
+
+## Constraints
+
+### Development Constraints
+- No manual code writing by human
+- Claude generates code, structure, and logic
+- Phase 3 implemented inside Phase 2 project
+- No breaking changes to existing APIs
+- No unnecessary dependencies
+
+### Out of Scope
+- Voice interaction
+- Multi-tenant admin dashboards
+- Notifications or reminders
+- Advanced analytics
+- Offline mode
+
+## Success Criteria
+
+1. **Phase 2 Complete**: Todo app fully functional via UI
+2. **Phase 3 Complete**: Chatbot manages todos via natural language
+3. **Production Quality**: UI looks professional and polished
+4. **Evaluator-Friendly**: App can be evaluated easily by hackathon judges
+5. **Agentic Demo**: Project demonstrates agentic workflow clearly
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other practices for this project:
+- All code must comply with these principles
+- Amendments require explicit user approval
+- When in doubt, refer back to these principles
+- Complexity must be justified against simplicity
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-01-26 | **Last Amended**: 2026-01-26

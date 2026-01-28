@@ -1,0 +1,25 @@
+"""User database model."""
+
+from datetime import datetime
+from typing import Optional, TYPE_CHECKING
+from uuid import UUID, uuid4
+
+from sqlmodel import Field, SQLModel, Relationship
+
+if TYPE_CHECKING:
+    from app.models.task import Task
+
+
+class User(SQLModel, table=True):
+    """User model for authentication and task ownership."""
+
+    __tablename__ = "users"
+
+    id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
+    email: str = Field(unique=True, index=True, max_length=255)
+    hashed_password: str = Field(max_length=255)
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+    # Relationships
+    tasks: list["Task"] = Relationship(back_populates="user")
