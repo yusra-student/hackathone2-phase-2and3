@@ -11,12 +11,15 @@ from app.config import settings
 
 
 def get_database_url() -> str:
-    """Get database URL, removing sslmode from query params for asyncpg."""
+    """Get database URL, converting to asyncpg dialect and removing sslmode."""
     url = settings.DATABASE_URL
-    # Remove sslmode from URL as asyncpg handles it differently
+    # Convert postgresql:// to postgresql+asyncpg:// for async engine
+    if url.startswith("postgresql://"):
+        url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
+    # Remove sslmode and channel_binding from URL as asyncpg handles SSL differently
     if "?" in url:
         base, params = url.split("?", 1)
-        param_list = [p for p in params.split("&") if not p.startswith("sslmode=")]
+        param_list = [p for p in params.split("&") if not p.startswith("sslmode=") and not p.startswith("channel_binding=")]
         if param_list:
             url = f"{base}?{'&'.join(param_list)}"
         else:

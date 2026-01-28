@@ -111,7 +111,7 @@ export function ChatPanel({
             <div className="text-center text-muted-foreground py-8">
               <p className="mb-2">No messages yet</p>
               <p className="text-sm">
-                Try saying "Show my tasks" or "Create a task to buy groceries"
+                Try saying &quot;Show my tasks&quot; or &quot;Create a task to buy groceries&quot;
               </p>
             </div>
           )}
