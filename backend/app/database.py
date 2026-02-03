@@ -27,11 +27,6 @@ def get_database_url() -> str:
     return url
 
 
-# Create SSL context for secure connection
-ssl_context = ssl.create_default_context()
-ssl_context.check_hostname = False
-ssl_context.verify_mode = ssl.CERT_NONE
-
 # Create async engine with connection pooling for serverless PostgreSQL
 engine: AsyncEngine = create_async_engine(
     get_database_url(),
@@ -40,7 +35,6 @@ engine: AsyncEngine = create_async_engine(
     pool_size=5,
     max_overflow=10,
     pool_recycle=300,  # Recycle connections after 5 minutes
-    connect_args={"ssl": ssl_context},
 )
 
 # Async session factory

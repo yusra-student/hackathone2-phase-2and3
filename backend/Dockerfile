@@ -9,7 +9,11 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+# Copy everything except .env file to prevent conflicts with Docker environment variables
+COPY --chown=python:python . .
+
+# Remove the .env file to prevent it from overriding Docker environment variables
+RUN rm -f .env
 
 EXPOSE 7860
 

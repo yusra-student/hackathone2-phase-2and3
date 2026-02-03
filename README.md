@@ -144,3 +144,53 @@ A production-ready Todo web application with a modern UI and an AI-powered chatb
 ## License
 
 This project is for hackathon demonstration purposes.
+
+## Docker Deployment
+
+The application can be deployed using Docker and Docker Compose. Follow these steps:
+
+### Prerequisites
+
+- Docker Desktop installed
+- Docker Compose (included with Docker Desktop)
+
+### Quick Start
+
+1. Clone the repository
+2. Navigate to the project directory
+3. Create a `.env` file in the project root with your environment variables:
+   ```bash
+   OPENROUTER_API_KEY=your_openrouter_api_key_here
+   SECRET_KEY=your_secret_key_here
+   ```
+4. Run the application using Docker:
+   - On Windows: `start-docker.bat`
+   - On Linux/Mac: `./start-docker.sh`
+
+### Manual Docker Commands
+
+Alternatively, you can use Docker Compose directly:
+
+```bash
+# Build and start services
+docker compose up -d --build
+
+# View logs
+docker compose logs -f
+
+# Stop services
+docker compose down
+```
+
+### Services
+
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:7860
+- Database: PostgreSQL on port 5432 (internal - for external access, modify docker-compose.yml)
+
+### Architecture
+
+The Docker setup includes:
+- Frontend: Next.js application
+- Backend: FastAPI application
+- Database: PostgreSQL
